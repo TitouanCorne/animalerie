@@ -1,0 +1,56 @@
+.page{
+    background-color: rgb(247, 241, 169);
+}
+.page-header{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-family: 'Lobster';
+}
+h1{
+    font-size: 4rem;
+}
+.etat{
+    text-align: center;
+}
+.dispo{
+    text-align: center;
+}
+.animal{
+    background-color: rgba(175, 233, 199, 0.815);
+    margin-bottom: 10px;
+}
+.accordion-button{
+    background-color: rgba(141, 228, 177, 0.815);
+    margin-bottom: 10px;
+}
+.accordion-body{
+    background-color: rgba(141, 228, 177, 0.815);
+}
+
+.equipement{
+    background-color: rgba(233, 215, 175, 0.815);
+    margin-bottom: 10px;
+}
+.id_animal{
+    text-align: center;
+    font-family: 'Lobster';
+    font-size: 1.3rem;
+}
+.id_equipement{
+    text-align: center;
+    color: rgb(92, 122, 255);
+    font-family: 'Lobster';
+    font-size: 1.3rem;
+}
+.photo{
+    width : 200px;
+    height : 150px; 
+}
+#ajout_animal{
+    text-align: center;
+}
+#footer{
+    text-align: center;
+    color:rgb(36, 34, 32)
+}

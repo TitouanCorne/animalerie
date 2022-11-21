@@ -1,0 +1,91 @@
+{% extends 'animalerie/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="regles">
+        <div class="accordion accordion-flush" id="#Deroulant_regles">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="Règles">
+                    <button class="accordion-button collapsed text-bg p3 border border-secondary p-3;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-regles" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Comment ça fonctionne ?
+                    </button>
+                </h2>
+                <div id="flush-regles" class="accordion-collapse collapse text-bg-info p-3" aria-labelledby="regles" data-bs-parent="#Deroulant_regles">
+                    <div class="accordion-body">
+                        <p>
+                            Le programme gère un cheptel de rongeurs (tamias, hamsters, etc..) qui vivent dans une cage.
+                            <ul>
+                                <li>La cage est constituée d'une litière, ainsi que d'une mangeoire, un nid et une roue pour faire de l'exercice. La mangeoire, le nid et la roue ne peuvent accueillir qu'un seul animal. La litière peut accueillir plusieurs animaux.</li>
+                                <li>Les animaux passent par différents états au cours de la journée:</li>
+                                    <ul>
+                                        <li>Lorsqu’ils se réveillent, ils sont "affamés" et doivent donc être placés sur la mangeoire pour être nourris.</li>
+                                        <li>Une fois qu'ils ont mangé, ils sont "repus" et ont besoin d'exercice. Ils doivent donc être placés sur la roue.</li>
+                                        <li>Après avoir fait du sport, ils sont "fatigués" et ont besoin de dormir. Ils doivent donc être mis dans le nid pour se reposer.</li>
+                                        <li>et ainsi de suite…</li>
+                                    </ul>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" id="msg" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+    {% endif %}
+    <div class="col-md-6">
+        {% for animal in animaux %}
+            <div class="animal border border-primary p-3">
+                <p class="id_animal"><a href="{% url 'animal_detail' id_animal=animal.id_animal %}"><strong>{{ animal.id_animal }}</strong></a></p>
+                <p class="photo_animal  text-center">
+                    <img src ="{{animal.photo.url}}" class="photo">
+                </p>
+                <p class="etat lieu">
+                    état actuel : <strong>{{ animal.etat }}</strong>, lieu : <strong>{{ animal.lieu }}</strong>
+                </p>
+                <div class="accordion accordion-flush" id="#Deroulant_{{ animal.id_animal }}">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="Caractéristiques">
+                            <button class="accordion-button collapsed text-bg p3 border border-secondary p-3;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ animal.id_animal }}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Caractéristiques
+                            </button>
+                        </h2>
+                        <div id="flush-{{ animal.id_animal }}" class="accordion-collapse collapse text-bg-info p-3" aria-labelledby="regles" data-bs-parent="#Deroulant_{{ animal.id_animal }}">
+                            <div class="accordion-body">
+                                <p class="type">
+                                    Type : {{ animal.type }}
+                                </p>
+                                <p class="race">
+                                    Race : {{ animal.race }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        {% for equipement in equipements %}
+            <div class="equipement border border-primary p-3">
+                <p class="id_equipement">
+                    <strong>{{ equipement }}</strong>
+                </p>
+                <p class="photo_equipement  text-center">
+                    <img src ="{{equipement.photo.url}}" class="photo">
+                </p>
+                <p class="dispo">
+                    disponibilité : <strong>{{ equipement.disponibilite }}</strong>
+                </p>
+            </div>
+        {% endfor %}
+        <p id="ajout_animal"><a href="./admin">Ajouter un nouvel animal ou un nouvel équipement </a></p>
+    </div>
+    <footer>
+        <p id="footer"> application codée par Titouan en utilisant Django </p>
+    </footer>
+{% endblock %}
